@@ -1,10 +1,13 @@
 import yfinance as yf
 
-def download_stock_data():
-    stock_data = yf.download(["AAPL", "FE", "WMT"], "2000-01-03", "2023-12-31",auto_adjust=False)
+
+def download_stock_data(tickers, csv_file_name):
+    stock_data = yf.download(tickers, "2000-01-03", "2023-12-31", auto_adjust=False)
     if stock_data is not None:
         adj_data = stock_data["Adj Close"]
-        adj_data.to_csv("stock_price.csv")
+        adj_data.to_csv(csv_file_name)
+
 
 if __name__ == '__main__':
-    download_stock_data()
+    download_stock_data(["AAPL", "FE", "WMT"], "stock_price.csv")
+    download_stock_data("SPY", "market_price.csv")
