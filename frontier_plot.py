@@ -66,3 +66,18 @@ def compute_ABC(expected_returns: List[float], cov: List[List[float]]):
     B = ones @ cov_inv @ expected_returns
     C = expected_returns @ cov_inv @ expected_returns
     return A, B, C
+
+def plot_capital_allocation(
+        rf:float,
+        expected_returns: List[float],
+        standard_deviations: List[float],
+        correlation_matrix: List[List[float]]
+):
+    cov = covariance_matrix(standard_deviations, correlation_matrix)
+    A, B, C = compute_ABC(expected_returns, cov)
+
+    x = np.linspace(0,0.45,100)
+    y = rf + x * (C-2*B*rf+A*rf**2) ** 0.5
+    plt.plot(x,y,color="blue",lw=2.5)
+
+
