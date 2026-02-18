@@ -1,17 +1,17 @@
 import requests
 
 
-def download_risk_free_rate():
+def download_bond_price(id: str, start_date: str, end_date: str, file_name: str):
     url = "https://fred.stlouisfed.org/graph/fredgraph.csv"
 
     params = {
-        "id": "TB3MS",
-        "cosd": "2000-01-01",  # 开始日期
-        "coed": "2023-12-30",  # 结束日期
+        "id": id,
+        "cosd": start_date,  # 开始日期
+        "coed": end_date,  # 结束日期
         "fq": "Monthly",  # 按月获取数据（TB3MS是月度数据）
         "fam": "avg",
         "fgst": "lin",
-        "fgsnd": "2023-12-30",
+        "fgsnd": end_date,
         "fhml": "lin",
         "fml": "lin",
         "fsml": "0",
@@ -32,12 +32,14 @@ def download_risk_free_rate():
         "lhid": ""
     }
 
-    response = requests.get(url, params=params, timeout=30)
+    response = requests.get(url, params=params, timeout=180)
     response.raise_for_status()
 
-    with open("data/risk_free_rate.csv", "wb") as f:
+    with open(file_name, "wb") as f:
         f.write(response.content)
 
 
 if __name__ == "__main__":
-    download_risk_free_rate()
+    download_bond_price("BAMLCC8A015PYTRIV", "1984-06-29", "2020-12-31", "data/corporate_bond.csv")
+    download_bond_price("DGS10", "1984-06-29", "2020-12-31", "data/treasury_bond_yield.csv")
+    download_bond_price("DTB3", "1984-06-29", "2020-12-31", "data/short_term_risk_free_rate.csv")

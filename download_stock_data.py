@@ -9,5 +9,5 @@ def download_stock_data(tickers, csv_file_name):
 
 
 if __name__ == '__main__':
-    download_stock_data(["AAPL", "FE", "WMT"], "stock_price.csv")
-    download_stock_data("SPY", "market_price.csv")
+    download_stock_data(["AAPL", "FE", "WMT"], "data/stock_price.csv")
+    download_stock_data("SPY", "data/market_price.csv")

@@ -4,17 +4,17 @@ import statsmodels.api as sm
 
 def get_beta(stock_code: str):
     stock_prices = pd.read_csv(
-        "stock_price.csv",
+        "data/stock_price.csv",
         index_col=0,
         parse_dates=True
     )
     mkt_prices = pd.read_csv(
-        "market_price.csv",
+        "data/market_price.csv",
         index_col=0,
         parse_dates=True
     )
     rf = pd.read_csv(
-        "risk_free_rate.csv",
+        "data/risk_free_rate.csv",
         index_col=0,
         parse_dates=True
     )
