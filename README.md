@@ -1,3 +1,5 @@
+# [Build a Robo-Advisor with Python](https://www.manning.com/books/build-a-robo-advisor-with-python-from-scratch)
+
 ## Efficient Frontier
 
 ![Efficient Frontier](./images/efficient_frontier.png)
